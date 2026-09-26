@@ -1,0 +1,154 @@
+{
+  "model_version": "xgb_final_stage5_production",
+  "creation_timestamp": "2026-09-26T15:10:26.024555",
+  "final_model_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\data\\models\\xgb_final_stage5.json",
+  "baseline_model_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\data\\models\\xgb_stage4_baseline.json",
+  "decision_threshold": 0.91,
+  "training_data": {
+    "source_artifact": "C:\\Users\\KIIT\\Desktop\\Wyvern\\data\\processed\\stage3_sample_features.npz",
+    "total_samples": 589520,
+    "n_features": 46,
+    "positive_count": 123909,
+    "negative_count": 465611,
+    "positive_ratio": 0.21018625322296106
+  },
+  "xgboost_hyperparameters": {
+    "objective": "binary:logistic",
+    "eval_metric": "logloss",
+    "tree_method": "hist",
+    "max_depth": 6,
+    "learning_rate": 0.05,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "min_child_weight": 5,
+    "reg_lambda": 1.0,
+    "reg_alpha": 0.0,
+    "n_estimators": 1000,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "boosting_rounds_completed": 1000,
+  "feature_definitions": {
+    "count": 46,
+    "feature_names": [
+      "name_exact",
+      "name_stripped_exact",
+      "name_len_diff",
+      "name_len_ratio",
+      "name_stripped_len_diff",
+      "name_jaro_winkler",
+      "name_levenshtein_norm",
+      "name_token_sort_ratio",
+      "name_token_set_ratio",
+      "name_partial_ratio",
+      "name_first_two_tokens_match",
+      "name_prefix_8_match",
+      "name_first_word_match",
+      "name_num_shared_tokens",
+      "name_token_jaccard",
+      "addr_exact",
+      "addr_len_diff",
+      "addr_jaro_winkler",
+      "addr_levenshtein_norm",
+      "addr_token_sort_ratio",
+      "addr_token_set_ratio",
+      "addr_num_shared_tokens",
+      "addr_token_jaccard",
+      "shared_numeric_count",
+      "shared_numeric_ratio",
+      "exact_numeric_match",
+      "has_postal_code_pair",
+      "postal_code_match",
+      "name_addr_sim_product",
+      "name_exact_and_addr_sim",
+      "name_sim_and_shared_num",
+      "both_fields_agree_strong",
+      "name_only_agrees",
+      "addr_only_agrees",
+      "same_country",
+      "is_source3",
+      "s1_missing_name",
+      "t_missing_name",
+      "s1_missing_addr",
+      "t_missing_addr",
+      "both_have_addr",
+      "blocking_rule_stripped",
+      "blocking_rule_tok2",
+      "blocking_rule_pfx8",
+      "blocking_rule_addr_num",
+      "num_blocking_rules"
+    ]
+  },
+  "blocking_configuration": [
+    {
+      "name": "rule_stripped_name",
+      "keys": [
+        "country",
+        "stripped_name"
+      ],
+      "bucket_cap": null,
+      "description": "Exact match on country and normalized alphanumeric name (no spaces/punctuation)"
+    },
+    {
+      "name": "rule_first_2_tokens",
+      "keys": [
+        "country",
+        "first_2_tokens"
+      ],
+      "bucket_cap": 200,
+      "description": "Exact match on country and first two name tokens (cap <= 200)"
+    },
+    {
+      "name": "rule_name_pfx8",
+      "keys": [
+        "country",
+        "name_pfx8"
+      ],
+      "bucket_cap": 200,
+      "description": "Exact match on country and first 8 characters of stripped name (cap <= 200)"
+    },
+    {
+      "name": "rule_addr_num_initial",
+      "keys": [
+        "country",
+        "address_num_ge_3",
+        "name_initial"
+      ],
+      "bucket_cap": 100,
+      "description": "Exact match on country, address numeric >= 3 digits, and first letter of name (cap <= 100)"
+    }
+  ],
+  "official_validation_evidence": {
+    "validation_entity_count": 10002,
+    "validation_singletons": 559,
+    "validation_gt_matches": 34677,
+    "selected_threshold": 0.91,
+    "macro_f05": 0.7785301848362192,
+    "macro_precision": 0.8609841888925043,
+    "macro_recall": 0.6496591843247512,
+    "micro_precision": 0.8760461703224783,
+    "micro_recall": 0.6369063067739423,
+    "micro_f05": 0.8148552622840741,
+    "blocking_recall_ceiling_pct": 71.68440176485855,
+    "singleton_zero_prediction_rate": 0.8676207513416816
+  },
+  "smoke_test_results": {
+    "smoke_sample_size": 1000,
+    "smoke_positives": 185,
+    "smoke_negatives": 815,
+    "mean_prob_positives": 0.9724743962287903,
+    "mean_prob_negatives": 0.010403978638350964,
+    "probabilities_in_0_1": true,
+    "no_nan": true
+  },
+  "system_resources": {
+    "training_duration_seconds": 21.99,
+    "peak_ram_mb": 369.38
+  },
+  "integrity_confirmation": {
+    "raw_train_datasets_untouched": true,
+    "raw_test_datasets_untouched": true,
+    "test_files_accessed_count": 0,
+    "submission_files_generated_count": 0
+  }
+}
