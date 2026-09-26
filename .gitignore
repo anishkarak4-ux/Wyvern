@@ -1,5 +1,6 @@
 # Large raw challenge datasets
 data/raw/
+data/processed/
 
 # Python / Environment
 __pycache__/
