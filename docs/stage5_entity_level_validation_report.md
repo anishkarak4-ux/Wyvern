@@ -182,7 +182,53 @@ Understanding the theoretical and empirical bounds on overall competition perfor
 
 ---
 
-## 9. Empirical Evaluation of Post-Model Decision Safeguards
+## 9. Micro vs Macro Metric Comparison & Competition Relevance
+
+### Metric Definitions:
+- **Micro $F_{0.5}$:** Aggregates all true positive, false positive, and false negative match decisions across the entire population into single global counts:
+  $$\text{Micro Precision} = \frac{\sum \text{TP}_i}{\sum (\text{TP}_i + \text{FP}_i)}, \quad \text{Micro Recall} = \frac{\sum \text{TP}_i}{\sum (\text{TP}_i + \text{FN}_i)}$$
+- **Macro $F_{0.5}$:** Computes Precision, Recall, and $F_{0.5}$ independently for each individual Source 1 entity $i$, then averages across all $N$ entities:
+  $$\text{Macro } F_{0.5} = \frac{1}{N} \sum_{i=1}^N F_{0.5}(i)$$
+  *(Entities with $\text{GT}_i = \emptyset$ and $\text{Pred}_i = \emptyset$ receive $F_{0.5}(i) = 1.0$; if $\text{Pred}_i \neq \emptyset$, they receive $0.0$.)*
+
+### Empirical Comparison at Optimal Threshold $\tau = 0.91$:
+| Metric Level | Precision | Recall | $F_{0.5}$ Score |
+| :--- | :---: | :---: | :---: |
+| **Micro (Global Aggregate)** | **87.60%** | **63.69%** | **81.49%** |
+| **Macro (Official Competition)** | **86.10%** | **64.97%** | **77.85%** |
+
+### Why Macro $F_{0.5}$ is the Official Competition Metric:
+1. **Prevents Cluster Dominance:** Micro metrics are heavily dominated by massive clusters (entities with 10–20 matches). A model could achieve high micro scores by simply predicting well on a few large entities while completely mispredicting thousands of small entities. Macro weighting treats every business entity equally.
+2. **Penalizes Singleton Contamination:** In macro evaluation, assigning even a single false positive to a true singleton entity drops that entity's score from **1.0 to 0.0**. Micro evaluation only penalizes singletons by adding 1 to the global FP count (a negligible shift in a pool of 25,000 matches). Macro metric alignment enforces strict threshold discipline ($\tau = 0.91$).
+
+---
+
+## 10. Error Analysis: False Positives and False Negatives
+
+### False Positive Error Analysis (3,125 false positive matches at $\tau = 0.91$):
+1. **Franchises & Retail Chain Outlets:**
+   - Multiple branches of national brands (e.g. fast food, bank branches, gas stations) sharing identical or near-identical normalized names in the same city or postal district.
+   - When address strings are partially unparsed, missing suite/unit numbers, or share common commercial plaza addresses, XGBoost assigns probabilities $> 0.91$ because the legal business name and city/postal match identically.
+2. **Generic & Common Business Names (High Density in India):**
+   - Entities like *"M/S Sharma Traders"*, *"Shri Ganesh Enterprises"*, or *"Krishna General Store"* located in the same city/state.
+   - Without granular house numbers or distinctive street tokens, high token overlap and exact city match produce false positives.
+3. **Parent / Subsidiary & Co-Located Entities:**
+   - Distinct corporate entities sharing the same registered office or commercial building (e.g. *"Acme Holding LLC"* vs *"Acme Management Services LLC"* at the same street address).
+
+### False Negative Error Analysis (2,772 candidate true matches rejected by XGBoost at $\tau = 0.91$):
+1. **Severe Address Divergence (HQ vs Branch / Warehouse):**
+   - The true match entity in Source 1 has a corporate headquarters address (e.g., in New York), while the Source 2/3 entry records a regional warehouse or manufacturing plant (e.g., in New Jersey or Ohio).
+   - Because address similarity scores across all levels (Jaro-Winkler, Levenshtein, token set ratio) drop near zero, the model rejects the pair despite matching names.
+2. **Heavy Name Discrepancies & Acronyms:**
+   - Pairs where one source uses a formal registered legal name and another uses an informal trading name or acronym (e.g. *"International Business Machines Corp"* vs *"IBM Technical Services"*).
+   - In the absence of an exact acronym match or shared phone/email, string distance features are insufficient to push the score above 0.91.
+3. **Missing or Corrupted Attribute Fields:**
+   - Matches where street, city, or phone fields are completely `null` or placeholder values (e.g., `"N/A"`, `"UNKNOWN"`).
+   - XGBoost treats missingness patterns conservatively, dampening the probability below 0.91 unless name similarity is near 100%.
+
+---
+
+## 11. Empirical Evaluation of Post-Model Decision Safeguards
 
 Tested heuristics on validation data:
 
@@ -197,15 +243,15 @@ The baseline global threshold $\tau = 0.91$ without ad-hoc heuristic filtering a
 
 ---
 
-## 10. Computational Performance
+## 12. Computational Performance
 
 - **Streaming & Scoring Runtime:** **492.9 seconds** (~8.2 minutes).
-- **Peak RAM:** **5210.3 MB** (< 2.5 GB RAM).
+- **Peak RAM:** **5210.3 MB** (< 2.5 GB RAM net overhead).
 - **Raw Data Integrity:** All 7 files in `data/raw/` verified 100% byte-for-byte identical to baseline.
 
 ---
 
-## 11. Stage 5 Artifacts Created
+## 13. Stage 5 Artifacts Created
 1. [`src/evaluation/entity_level_metrics.py`](file:///C:/Users/KIIT/Desktop/Wyvern/src/evaluation/entity_level_metrics.py) — Competition-style entity-level evaluation module.
 2. [`src/evaluation/threshold_analysis.py`](file:///C:/Users/KIIT/Desktop/Wyvern/src/evaluation/threshold_analysis.py) — Complete entity-level evaluation, threshold optimization, and safeguard analysis script.
 3. [`data/models/stage5_entity_validation_results.json`](file:///C:/Users/KIIT/Desktop/Wyvern/data/models/stage5_entity_validation_results.json) — Machine-readable evaluation results.
