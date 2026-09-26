@@ -1,0 +1,31 @@
+# Large raw challenge datasets
+data/raw/
+
+# Python / Environment
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter / Checkpoints
+.ipynb_checkpoints/
+
+# Secrets / Credentials / Configs
+.env
+.env.*
+*.pem
+*.key
+
+# IDE / OS metadata
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
