@@ -25,7 +25,7 @@ STAGE5_VALIDATION_RESULTS_PATH = os.path.join(MODELS_DIR, "stage5_entity_validat
 STAGE3_FEATURES_PATH = os.path.join(PROCESSED_DIR, "stage3_sample_features.npz")
 
 # -----------------------------------------------------------------------------
-# 1. FROZEN BLOCKING CONFIGURATION (Stages 2.5 - 5.5)
+# 1. VALIDATED PRODUCTION BLOCKING CONFIGURATION (Stage 8.6 Portfolio 2)
 # -----------------------------------------------------------------------------
 BLOCKING_RULES = [
     {
@@ -52,6 +52,30 @@ BLOCKING_RULES = [
         "bucket_cap": 100,
         "description": "Exact match on country, address numeric >= 3 digits, and first letter of name (cap <= 100)",
     },
+    {
+        "name": "rule_fw_addr_num",
+        "keys": ["country", "first_word_ge_3", "address_num_ge_3"],
+        "bucket_cap": 100,
+        "description": "Exact match on country, first significant word (>=3 chars), and address numeric >= 3 digits (cap <= 100)",
+    },
+    {
+        "name": "rule_sorted_tok2",
+        "keys": ["country", "sorted_first_2_tokens"],
+        "bucket_cap": 200,
+        "description": "Exact match on country and alphabetically sorted first two name tokens (cap <= 200)",
+    },
+    {
+        "name": "rule_fw4",
+        "keys": ["country", "first_word_ge_4"],
+        "bucket_cap": 50,
+        "description": "Exact match on country and first significant word (>=4 chars) (cap <= 50)",
+    },
+    {
+        "name": "rule_rare_tok_addr_num",
+        "keys": ["country", "rare_name_tok_df_le_100", "address_num_ge_3"],
+        "bucket_cap": 100,
+        "description": "Exact match on country, rare name token (catalog DF <= 100, len >= 4), and address numeric >= 3 digits (cap <= 100)",
+    },
 ]
 
 # -----------------------------------------------------------------------------
@@ -74,9 +98,9 @@ XGB_PARAMS: Dict[str, Any] = {
 }
 
 # -----------------------------------------------------------------------------
-# 3. FROZEN DECISION THRESHOLD (Stage 5 Macro F0.5 Optimum)
+# 3. VALIDATED DECISION THRESHOLD (Stage 8.6 Macro F0.5 Optimum: 0.79804)
 # -----------------------------------------------------------------------------
-DECISION_THRESHOLD = 0.91
+DECISION_THRESHOLD = 0.90
 
 # -----------------------------------------------------------------------------
 # 4. OFFICIAL VALIDATION EVIDENCE (Stage 5 Held-Out Results)

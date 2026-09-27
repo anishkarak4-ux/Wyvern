@@ -1,0 +1,63 @@
+{
+  "timestamp": "2026-09-27T18:59:18.380987",
+  "decision_threshold": 0.9,
+  "total_s1_entities": 1732544,
+  "total_candidates": 336928889,
+  "avg_candidates_per_s1": 194.47,
+  "max_candidates": 1788,
+  "total_matches": 6557986,
+  "avg_matches_per_s1": 3.79,
+  "max_matches": 717,
+  "source2_matches": 3004664,
+  "source3_matches": 3553322,
+  "match_cardinality_distribution": {
+    "zero_matches": 207395,
+    "one_match": 318120,
+    "two_three_matches": 743075,
+    "four_five_matches": 341241,
+    "six_plus_matches": 122713
+  },
+  "comparison_with_stage7": {
+    "stage7_candidates": 345097457,
+    "candidate_delta": -8168568,
+    "candidate_delta_pct": -2.37,
+    "stage7_matches": 4453530,
+    "match_delta": 2104456,
+    "match_delta_pct": 47.25
+  },
+  "country_breakdown": {
+    "France": {
+      "country": "France",
+      "s1_count": 259452,
+      "candidates": 49875890,
+      "matches": 2963577,
+      "duration": 0.0
+    },
+    "US": {
+      "country": "US",
+      "s1_count": 663106,
+      "candidates": 133958996,
+      "matches": 1934740,
+      "duration": 0.0
+    },
+    "India": {
+      "country": "India",
+      "s1_count": 809986,
+      "candidates": 153094003,
+      "matches": 1659669,
+      "duration": 0.0
+    }
+  },
+  "official_validation": {
+    "validator_exit_code": 0,
+    "validator_passed": true,
+    "check_ids_passed": true,
+    "subset_containment_passed": true
+  },
+  "submission_artifacts": {
+    "matching_results_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\submissions\\stage9_v2\\matching_results.tsv",
+    "candidate_pairs_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\submissions\\stage9_v2\\candidate_pairs.tsv",
+    "intermediate_parquet_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\data\\processed\\test_predictions_stage9.parquet"
+  },
+  "total_duration_seconds": 1490.79
+}
