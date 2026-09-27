@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-09-27T04:22:00.000000",
+  "matching_results_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\output\\matching_results.tsv",
+  "candidate_pairs_path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\output\\candidate_pairs.tsv",
+  "backup_dir": "C:\\Users\\KIIT\\Desktop\\Wyvern\\submissions\\stage7_v1",
+  "file_sizes": {
+    "matching_results_tsv_bytes": 102726119,
+    "matching_results_tsv_mb": 97.97,
+    "candidate_pairs_tsv_bytes": 3842876587,
+    "candidate_pairs_tsv_mb": 3664.85
+  },
+  "row_counts": {
+    "matching_results_rows": 1732544,
+    "candidate_pairs_rows": 1732544,
+    "expected_rows": 1732544,
+    "unique_s1_ids": 1732544,
+    "missing_s1_ids": 0,
+    "duplicate_s1_ids": 0
+  },
+  "match_statistics": {
+    "total_predicted_matches": 6219897,
+    "s2_matches": 2858906,
+    "s3_matches": 3360991,
+    "zero_match_s1_count": 231210,
+    "one_match_s1_count": 347066,
+    "two_three_matches_s1_count": 742668,
+    "four_five_matches_s1_count": 305387,
+    "six_plus_matches_s1_count": 106213,
+    "max_matches_per_s1": 699
+  },
+  "candidate_statistics": {
+    "total_candidates": 296419213,
+    "max_candidates_per_s1": 2752,
+    "empty_candidate_s1_count": 3279
+  },
+  "validation_results": {
+    "cross_file_containment_violations": 0,
+    "invalid_matching_ids": 0,
+    "invalid_prefixes": 0,
+    "cross_country_matches": 0,
+    "france_cross_country_violations": 0,
+    "us_cross_country_violations": 0,
+    "india_cross_country_violations": 0,
+    "france_s1_represented": 259452,
+    "us_s1_represented": 663106,
+    "india_s1_represented": 809986,
+    "official_validator_returncode": 0,
+    "official_validator_status": "PASS"
+  },
+  "system_resources": {
+    "total_runtime_seconds": 1650.0,
+    "peak_ram_mb": 5594.0
+  }
+}

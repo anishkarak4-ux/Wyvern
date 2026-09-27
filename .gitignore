@@ -1,6 +1,9 @@
-# Large raw challenge datasets
+# Large raw challenge datasets & submissions
 data/raw/
 data/processed/
+output/
+submissions/
+scratch/
 
 # Python / Environment
 __pycache__/
