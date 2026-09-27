@@ -1,0 +1,28 @@
+{
+  "predictions_comparison": {
+    "label": "Predictions (Matches)",
+    "stage7_total": 6219897,
+    "stage9_total": 6557986,
+    "intersection": 6217016,
+    "intersection_pct_of_stage7": 99.95,
+    "intersection_pct_of_stage9": 94.8,
+    "stage7_only_dropped": 2881,
+    "stage7_only_pct": 0.05,
+    "stage9_only_added": 340970,
+    "stage9_only_pct": 5.2,
+    "duration_seconds": 3.89
+  },
+  "candidates_comparison": {
+    "label": "Candidates",
+    "stage7_total": 296419213,
+    "stage9_total": 336928889,
+    "intersection": 296418902,
+    "intersection_pct_of_stage7": 100.0,
+    "intersection_pct_of_stage9": 87.98,
+    "stage7_only_dropped": 311,
+    "stage7_only_pct": 0.0,
+    "stage9_only_added": 40509987,
+    "stage9_only_pct": 12.02,
+    "duration_seconds": 90.15
+  }
+}

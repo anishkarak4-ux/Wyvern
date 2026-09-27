@@ -82,31 +82,39 @@ Across the full test set of 1,732,544 Source 1 entities:
 
 ---
 
-## 4. Comparison Between Stage 9 and Stage 7 Baseline
+## 4. Authoritative Comparison Between Stage 9 and Stage 7 Baseline
+
+Direct file audit of the actual disk artifacts (`output/matching_results.tsv` and `output/candidate_pairs.tsv` vs `submissions/stage9_v2/`):
 
 ```
 ========================================================================================
-METRIC                          STAGE 7 (BASELINE)       STAGE 9 (PORTFOLIO 2)      CHANGE
+METRIC                          STAGE 7 (AUTHORITATIVE)   STAGE 9 (PORTFOLIO 2)      CHANGE
 ========================================================================================
-Blocking Rules                  4 Rules (Baseline)       8 Rules (Portfolio 2)      +4 Rules
-Decision Threshold (tau)              0.91                       0.90               -0.01
-Total S1 Entities                1,732,544                  1,732,544                 0 (100%)
-Total Candidates Generated     345,097,457                336,928,889            -8,168,568 (-2.37%)
-Average Candidates / S1              199.19                     194.47                -4.72 cands
-Total Matches Accepted           4,453,530                  6,557,986            +2,104,456 (+47.25%)
-Source 2 Matches                 2,174,384                  3,004,664              +830,280 (+38.19%)
-Source 3 Matches                 2,279,146                  3,553,322            +1,274,176 (+55.91%)
-Zero-Match Entities (0 matches)    418,922                    207,395              -211,527 (-50.49%)
-Official Validator Status             PASS                       PASS               Safe to submit
+Blocking Rules                  4 Rules (Baseline)        8 Rules (Portfolio 2)      +4 Rules
+Decision Threshold (tau)              0.91                        0.90               -0.01
+Total S1 Entities                1,732,544                   1,732,544                 0 (100%)
+Total Candidates Generated     296,419,213                 336,928,889            +40,509,676 (+13.67%)
+Average Candidates / S1              171.09                      194.47                +23.38 cands
+Total Matches Accepted           6,219,897                   6,557,986              +338,089 (+5.44%)
+Source 2 Matches                 2,858,906                   3,004,664              +145,758 (+5.10%)
+Source 3 Matches                 3,360,991                   3,553,322              +192,331 (+5.72%)
+Zero-Match Entities (0 matches)    231,210                     207,395               -23,815 (-10.30%)
+Official Validator Status             PASS                        PASS               Safe to submit
 ========================================================================================
 ```
+
+### Exact Set Intersection & Retention:
+- **Match Retention:** Stage 9 retains **6,217,016 out of 6,219,897 Stage 7 matches (99.95%)**.
+  - Newly added high-confidence matches: **+340,970 (+5.20%)**.
+  - Net prediction delta: **+338,089 matches (+5.44%)**.
+- **Candidate Retention:** Stage 9 retains **296,418,902 out of 296,419,213 Stage 7 candidates (100.00%)**.
+  - Newly added candidates: **+40,509,987 (+13.67%)**, exactly matching the +13.1% to +13.7% candidate growth projected from held-out validation.
 
 ### Key Observations on Comparison:
-1. **Candidate Volume Decreased Slightly (-2.37%):**
-   - Despite adding Rule 8 (`rare_tok_addr_num`), total candidate volume remained extremely controlled (336.9M vs 345.1M). The addition of high-precision rules allowed the candidate pool to concentrate on high-probability pairs.
-2. **Match Volume Increased Substantially (+47.25%):**
-   - The combination of recovering branch names via token sorting / first-word rules and tuning the threshold from $\tau = 0.91$ to $\tau = 0.90$ recovered **+2.10 Million high-confidence true matches** across the test catalog.
-   - Zero-match entities decreased by 50.49%, demonstrating that previously missed entities now find their legitimate target counterparts.
+1. **Candidate Expansion (+13.67%):**
+   - The addition of Combo 5 rules (sorted tokens, first-word variants) and Rule 8 (`rare_name_tok_df<=100 + addr_num_ge3`) expanded the candidate pool by +40.51 Million pairs (+23.38 cands/S1), breaking the candidate recall ceiling exactly as designed.
+2. **Match Recovery (+5.44%):**
+   - Shifting the threshold from $\tau = 0.91$ to $\tau = 0.90$ alongside the expanded recall recovered **+338,089 high-confidence matches** across the test catalog, while zero-match entities decreased by 10.30% (-23,815 singletons).
 
 ---
 

@@ -1,0 +1,77 @@
+{
+  "timestamp": "2026-09-27T20:22:42",
+  "stage7_direct": {
+    "matching": {
+      "label": "Stage 7",
+      "path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\output\\matching_results.tsv",
+      "rows": 1732544,
+      "total_matches": 6219897,
+      "mean_matches_per_s1": 3.59,
+      "max_matches": 699,
+      "zero_matches": 231210,
+      "one_match": 347066,
+      "two_to_three_matches": 742668,
+      "four_to_five_matches": 305387,
+      "six_plus_matches": 106213,
+      "s2_matches": 2858906,
+      "s3_matches": 3360991,
+      "duration_seconds": 2.24
+    },
+    "candidate": {
+      "label": "Stage 7",
+      "path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\output\\candidate_pairs.tsv",
+      "rows": 1732544,
+      "total_candidates": 296419213,
+      "mean_candidates_per_s1": 171.09,
+      "median_candidates": 149.0,
+      "p95_candidates": 404.0,
+      "p99_candidates": 625.0,
+      "max_candidates": 1773,
+      "zero_candidates": 3279,
+      "duration_seconds": 18.84
+    }
+  },
+  "stage9_direct": {
+    "matching": {
+      "label": "Stage 9",
+      "path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\submissions\\stage9_v2\\matching_results.tsv",
+      "rows": 1732544,
+      "total_matches": 6557986,
+      "mean_matches_per_s1": 3.79,
+      "max_matches": 717,
+      "zero_matches": 207395,
+      "one_match": 318120,
+      "two_to_three_matches": 743075,
+      "four_to_five_matches": 341241,
+      "six_plus_matches": 122713,
+      "s2_matches": 3004664,
+      "s3_matches": 3553322,
+      "duration_seconds": 2.14
+    },
+    "candidate": {
+      "label": "Stage 9",
+      "path": "C:\\Users\\KIIT\\Desktop\\Wyvern\\submissions\\stage9_v2\\candidate_pairs.tsv",
+      "rows": 1732544,
+      "total_candidates": 336928889,
+      "mean_candidates_per_s1": 194.47,
+      "median_candidates": 179.0,
+      "p95_candidates": 436.0,
+      "p99_candidates": 645.0,
+      "max_candidates": 1788,
+      "zero_candidates": 1818,
+      "duration_seconds": 19.95
+    },
+    "parquet_candidate_count_sum": 336928889,
+    "parquet_match_count_sum": 6557986,
+    "parquet_tsv_match_agreement": true,
+    "parquet_tsv_cand_agreement": true
+  },
+  "deltas": {
+    "candidate_delta": 40509676,
+    "candidate_delta_pct": 13.67,
+    "match_delta": 338089,
+    "match_delta_pct": 5.44,
+    "zero_match_delta": -23815,
+    "zero_match_delta_pct": -10.3
+  }
+}

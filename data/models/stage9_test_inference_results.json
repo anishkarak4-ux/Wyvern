@@ -18,12 +18,15 @@
     "six_plus_matches": 122713
   },
   "comparison_with_stage7": {
-    "stage7_candidates": 345097457,
-    "candidate_delta": -8168568,
-    "candidate_delta_pct": -2.37,
-    "stage7_matches": 4453530,
-    "match_delta": 2104456,
-    "match_delta_pct": 47.25
+    "stage7_candidates": 296419213,
+    "candidate_delta": 40509676,
+    "candidate_delta_pct": 13.67,
+    "stage7_matches": 6219897,
+    "match_delta": 338089,
+    "match_delta_pct": 5.44,
+    "stage7_zero_matches": 231210,
+    "zero_match_delta": -23815,
+    "zero_match_delta_pct": -10.30
   },
   "country_breakdown": {
     "France": {
