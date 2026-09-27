@@ -1,0 +1,248 @@
+{
+  "timestamp": "2026-09-27T14:36:12",
+  "validation_entities": 10002,
+  "validation_gt_matches": 34677,
+  "baseline_reproduction": {
+    "combo5_macro_f05": 0.7946914161145668,
+    "combo5_macro_precision": 0.8705989517450987,
+    "combo5_macro_recall": 0.6763171860577379,
+    "combo5_candidate_recall_pct": 74.3,
+    "remaining_missed_gt": 8913
+  },
+  "missed_matches_taxonomy": {
+    "by_country": {
+      "India": 5618,
+      "US": 3295
+    },
+    "token_containment": {
+      "zero_shared_name_tokens": 4163,
+      "shared_exactly_1_token": 1589,
+      "s1_subset_of_target": 1878,
+      "target_subset_of_s1": 135,
+      "shared_2+_tokens_partial": 868,
+      "identical_token_set": 280
+    },
+    "first_significant_word": {
+      "fw3_differs": 7158,
+      "fw3_agrees": 1755
+    },
+    "address_status": {
+      "both_addr_present": 8564,
+      "target_addr_missing": 349
+    },
+    "address_numeric_agreement": {
+      "shared_num_ge2": 2274,
+      "shared_num_ge3": 3071,
+      "no_shared_num": 3568
+    },
+    "rapidfuzz_token_set_ge_80": 4165,
+    "rapidfuzz_token_sort_ge_80": 2904,
+    "rapidfuzz_standard_ge_70": 4152,
+    "shared_rare_token_df50": 1095,
+    "transliterated_name_matches": 328,
+    "indian_locality_overlap": 5465
+  },
+  "retrieval_rules_evaluated": [
+    {
+      "rule_name": "rare_token_df25",
+      "description": "Country + Rare Name Token (Target DF <= 25, len >= 4)",
+      "additional_gt_recovered": 174,
+      "recovered_india": 102,
+      "recovered_us": 72,
+      "pct_missed_recovered": 1.95,
+      "new_candidate_recall_pct": 74.8,
+      "mean_candidates_per_s1": 1.0,
+      "p95_candidates_per_s1": 10.0,
+      "max_candidates": 45,
+      "est_test_candidates_added_millions": 1.7
+    },
+    {
+      "rule_name": "rare_token_df50",
+      "description": "Country + Rare Name Token (Target DF <= 50, len >= 4)",
+      "additional_gt_recovered": 341,
+      "recovered_india": 212,
+      "recovered_us": 129,
+      "pct_missed_recovered": 3.83,
+      "new_candidate_recall_pct": 75.28,
+      "mean_candidates_per_s1": 3.1,
+      "p95_candidates_per_s1": 30.0,
+      "max_candidates": 100,
+      "est_test_candidates_added_millions": 5.33
+    },
+    {
+      "rule_name": "rare_tok_and_addr_num",
+      "description": "Country + Rare Token (DF <= 100) + Addr Num (>=3 digits)",
+      "additional_gt_recovered": 276,
+      "recovered_india": 131,
+      "recovered_us": 145,
+      "pct_missed_recovered": 3.1,
+      "new_candidate_recall_pct": 75.09,
+      "mean_candidates_per_s1": 0.3,
+      "p95_candidates_per_s1": 2.0,
+      "max_candidates": 12,
+      "est_test_candidates_added_millions": 0.58
+    },
+    {
+      "rule_name": "transliterated_name",
+      "description": "NFKD ASCII Transliterated Stripped Name (non-ASCII only)",
+      "additional_gt_recovered": 0,
+      "recovered_india": 0,
+      "recovered_us": 0,
+      "pct_missed_recovered": 0.0,
+      "new_candidate_recall_pct": 74.3,
+      "mean_candidates_per_s1": 0.0,
+      "p95_candidates_per_s1": 0.0,
+      "max_candidates": 0,
+      "est_test_candidates_added_millions": 0.0
+    },
+    {
+      "rule_name": "india_fw_locality",
+      "description": "India: First Word + Locality/City Token",
+      "additional_gt_recovered": 671,
+      "recovered_india": 671,
+      "recovered_us": 0,
+      "pct_missed_recovered": 7.53,
+      "new_candidate_recall_pct": 76.23,
+      "mean_candidates_per_s1": 25.3,
+      "p95_candidates_per_s1": 90.0,
+      "max_candidates": 160,
+      "est_test_candidates_added_millions": 43.9
+    }
+  ],
+  "character_retrieval_feasibility": {
+    "method": "char_wb n-gram (3, 4) TF-IDF",
+    "pilot_query_time_100x50k_sec": 0.014,
+    "projected_val_runtime_min": 2.3,
+    "projected_test_runtime_hours": 6.6,
+    "projected_memory_gb": 3.37,
+    "decision": "INFEASIBLE for full 10M test catalog within remaining time limit"
+  },
+  "rapidfuzz_shortlist_distributions": {
+    "token_set_ratio": {
+      "tp_mean": 95.64,
+      "tp_median": 100.0,
+      "fp_mean": 0.24,
+      "fp_median": 0.0,
+      "separation": 95.39
+    },
+    "token_sort_ratio": {
+      "tp_mean": 91.35,
+      "tp_median": 100.0,
+      "fp_mean": 0.21,
+      "fp_median": 0.0,
+      "separation": 91.14
+    },
+    "WRatio": {
+      "tp_mean": 95.23,
+      "tp_median": 100.0,
+      "fp_mean": 0.26,
+      "fp_median": 0.0,
+      "separation": 94.96
+    },
+    "partial_ratio": {
+      "tp_mean": 96.61,
+      "tp_median": 100.0,
+      "fp_mean": 0.29,
+      "fp_median": 0.0,
+      "separation": 96.32
+    },
+    "lev_sim": {
+      "tp_mean": 88.4,
+      "tp_median": 100.0,
+      "fp_mean": 0.18,
+      "fp_median": 0.0,
+      "separation": 88.22
+    }
+  },
+  "candidate_portfolios": [
+    {
+      "portfolio": "Portfolio 0: Combo 5 (Current Baseline)",
+      "total_gt_recovered": 25764,
+      "candidate_recall_pct": 74.3,
+      "delta_gt_matches": 0,
+      "avg_additional_candidates_per_s1": 0.0,
+      "p95_additional_candidates": 0.0,
+      "est_test_candidates_added_millions": 0.0
+    },
+    {
+      "portfolio": "Portfolio 1: Combo 5 + RareTok+AddrNum (DF<=100)",
+      "total_gt_recovered": 26040,
+      "candidate_recall_pct": 75.09,
+      "delta_gt_matches": 276,
+      "avg_additional_candidates_per_s1": 0.2,
+      "p95_additional_candidates": 1.5,
+      "est_test_candidates_added_millions": 0.43
+    },
+    {
+      "portfolio": "Portfolio 2: Portfolio 1 + Transliterated Name",
+      "total_gt_recovered": 26040,
+      "candidate_recall_pct": 75.09,
+      "delta_gt_matches": 276,
+      "avg_additional_candidates_per_s1": 0.2,
+      "p95_additional_candidates": 1.5,
+      "est_test_candidates_added_millions": 0.43
+    },
+    {
+      "portfolio": "Portfolio 3: Portfolio 2 + Rare Token (DF<=25)",
+      "total_gt_recovered": 26136,
+      "candidate_recall_pct": 75.37,
+      "delta_gt_matches": 372,
+      "avg_additional_candidates_per_s1": 1.2,
+      "p95_additional_candidates": 10.0,
+      "est_test_candidates_added_millions": 2.13
+    },
+    {
+      "portfolio": "Portfolio 4: Portfolio 3 + Indian Locality",
+      "total_gt_recovered": 26801,
+      "candidate_recall_pct": 77.29,
+      "delta_gt_matches": 1037,
+      "avg_additional_candidates_per_s1": 11.4,
+      "p95_additional_candidates": 40.0,
+      "est_test_candidates_added_millions": 19.69
+    }
+  ],
+  "end_to_end_threshold_comparisons": [
+    {
+      "threshold": 0.88,
+      "combo5_macro_f05": 0.79478,
+      "portfolio2_macro_f05": 0.79768,
+      "delta": 0.0029,
+      "portfolio2_precision": 0.86761,
+      "portfolio2_recall": 0.68963
+    },
+    {
+      "threshold": 0.9,
+      "combo5_macro_f05": 0.79511,
+      "portfolio2_macro_f05": 0.79804,
+      "delta": 0.00294,
+      "portfolio2_precision": 0.87034,
+      "portfolio2_recall": 0.686
+    },
+    {
+      "threshold": 0.91,
+      "combo5_macro_f05": 0.79469,
+      "portfolio2_macro_f05": 0.79762,
+      "delta": 0.00293,
+      "portfolio2_precision": 0.87143,
+      "portfolio2_recall": 0.68293
+    },
+    {
+      "threshold": 0.92,
+      "combo5_macro_f05": 0.79457,
+      "portfolio2_macro_f05": 0.79745,
+      "delta": 0.00288,
+      "portfolio2_precision": 0.87259,
+      "portfolio2_recall": 0.68053
+    },
+    {
+      "threshold": 0.94,
+      "combo5_macro_f05": 0.79285,
+      "portfolio2_macro_f05": 0.79568,
+      "delta": 0.00282,
+      "portfolio2_precision": 0.87333,
+      "portfolio2_recall": 0.67439
+    }
+  ],
+  "runtime_seconds": 509.33,
+  "peak_ram_mb": 5618.34
+}
