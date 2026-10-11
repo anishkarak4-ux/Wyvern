@@ -1,35 +1,93 @@
-# Large raw challenge datasets & submissions
+# ==============================================================================
+# Wyvern: Large-Scale Multilingual Business Entity Resolution - Git Ignore Rules
+# ==============================================================================
+
+# Large raw datasets, processed dumps & temporary archives
 data/raw/
 data/processed/
+AWSML/
+TestData/
+Train data/
 output/
 submissions/
 scratch/
 
-# Python / Environment
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
+# Large candidate caches & experiment dump binaries
+experiments/**/val_p2_scored_candidates.json
+*.tsv
+*.parquet
+*.zip
+*.tar
+*.gz
+*.7z
+*.bz2
+*.bin
 
-# Virtual Environments
+# Python runtime, bytecode & caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & code coverage
+.pytest_cache/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+htmlcov/
+.hypothesis/
+
+# Virtual environments
 .venv/
 venv/
 env/
 ENV/
+env.bak/
+venv.bak/
 
-# Jupyter / Checkpoints
+# Jupyter notebooks checkpoints & runtime
 .ipynb_checkpoints/
+*/.ipynb_checkpoints/*
 
-# Secrets / Credentials / Configs
+# Logs & profiler dumps
+*.log
+*.prof
+*.tlog
+
+# Secrets, tokens & environment variables
 .env
 .env.*
 *.pem
 *.key
 
-# IDE / OS metadata
+# Operating system & IDE metadata
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
-.vscode/
 .idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
